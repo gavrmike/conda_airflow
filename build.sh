@@ -1,1 +1,1 @@
-docker build -t gavrikov/conda_hadoop:1.0.0 .
+docker build -t gavrikov/airflow:1.0.0 .
