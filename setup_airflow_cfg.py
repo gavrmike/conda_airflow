@@ -4,7 +4,7 @@ from string import Template
 import json
 
 HOME = os.environ.get('AIRFLOW_HOME', '/etc/airflow/')
-HOME_TEMPLATE = os.environ.get('AIRFLOW_HOME_TEMPLATE', '/etc/airflow_template/')
+HOME_TEMPLATE = os.environ.get('AIRFLOW_HOME_TEMPLATE', '/etc/airflow_template') + '/'
 
 cfg = 'airflow.cfg.template'
 
@@ -12,7 +12,7 @@ data = None
 
 for fldr in [HOME_TEMPLATE, HOME, './', '/']:
 	try:
-		with open(cfg, 'rt') as f:
+		with open(fldr + cfg, 'rt') as f:
 			data = Template(f.read())
 		continue
 	except:
@@ -20,24 +20,14 @@ for fldr in [HOME_TEMPLATE, HOME, './', '/']:
 
 assert data is not None, 'data should be none'
 
-params_list = [
-	'REDIS_PASSWORD',
-	'REDIS_HOST',
-	'REDIS_PORT',
-	'REDIS_PART',
-	'POSTGRES_USER',
-	'POSTGRES_PASSWORD',
-	'POSTGRES_HOST',
-	'POSTGRES_PORT',
-	'POSTGRES_DATABASE'
-]
-
 save_placeholders = ['FERNET_KEY']
 
 params = {}
 
-for k in params_list:
-	params[k] = os.environ.get(k, '')
+for k in os.environ:
+	if k.startswith('AIRFLOW_'):
+		params[k[8:]] = os.environ.get(k, '')
+		print('found:', k[8:])
 
 from cryptography.fernet import Fernet
 FERNET_KEY = Fernet.generate_key().decode()
@@ -54,6 +44,7 @@ except:
 for k, v in serialized_properties.items():
 	if k in save_placeholders:	
 		params[k] = v
+		print('overwrite:', k)
 
 result = data.substitute(params)
 
