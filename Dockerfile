@@ -12,7 +12,7 @@ RUN useradd airflow
 
 RUN mkdir -p /etc/airflow && chown -R airflow /etc/airflow
 RUN mkdir -p /etc/airflow_template  && chown -R airflow /etc/airflow_template
-RUN mkdir -p /var/log/supervisord  && chown -R airflow /var/log/supervisord 
+RUN mkdir -p /var/log/supervisor  && chown -R airflow /var/log/supervisor 
 
 COPY airflow.cfg.template /etc/airflow_template/airflow.cfg.template
 COPY setup_airflow_cfg.py /opt/conda/bin/setup_airflow_cfg.py
