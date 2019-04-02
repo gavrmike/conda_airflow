@@ -24,6 +24,8 @@ save_placeholders = ['FERNET_KEY']
 
 params = {}
 
+params['HOSTNAME_PORT'] = 'localhost:8080'
+
 for k in os.environ:
 	if k.startswith('AIRFLOW_'):
 		params[k[8:]] = os.environ.get(k, '')
