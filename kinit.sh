@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-kinit `cat /keytab/username` -kt /keytab/password
+while true; do
+	kinit `cat /keytab/username` -kt /keytab/password
+	date
+	sleep 24h
+done
