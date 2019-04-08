@@ -3,5 +3,5 @@
 while true; do
 	kinit `cat /keytab/username` -kt /keytab/password
 	date
-	sleep 24h
+	sleep 6h
 done
