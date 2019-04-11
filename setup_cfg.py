@@ -65,9 +65,10 @@ try:
 		f.write("\n")
 		for command in commands.split(','):
 			print('add to supervisord', command)
-			f.write(create_command(command, programs[command]))
+			f.write(create_program(command, programs[command]))
 			f.write("\n")
-except:
+except Exception as e:
+	print('exception', e)
 	pass
 
 cfg = 'airflow.cfg.template'
