@@ -1,1 +1,1 @@
-docker build -t gavrikov/airflow:1.0.15 .
+docker build -t gavrikov/airflow:1.0.17 .

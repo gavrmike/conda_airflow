@@ -2,7 +2,7 @@ export JAVA_HOME=/opt/conda/
 
 source /opt/conda/bin/activate
 
-python /opt/conda/bin/setup_airflow_cfg.py
+python /opt/conda/bin/setup_cfg.py
 
 mkdir /var/log/airflow
 mkdir /var/log/supervisor

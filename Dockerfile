@@ -8,6 +8,8 @@ RUN conda install -y -c conda-forge -c cyclus python=3.6 java-jdk pyspark==2.3.1
 
 RUN conda install -y -c conda-forge psutil==5.6.1 setproctitle==1.1.10 && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install redis unicodecsv hmsclient fire apache-airflow[celery,ssh]
 
+RUN conda install -y -c conda-forge -c cyclus fbprophet lightgbm xgboost statsmodels scikit-learn catboost bokeh matplotlib sympy seaborn pyhive sqlalchemy pyarrow && pip install h2o
+
 RUN useradd airflow
 
 RUN mkdir -p /etc/airflow && chown -R airflow /etc/airflow
@@ -15,10 +17,9 @@ RUN mkdir -p /etc/airflow_template  && chown -R airflow /etc/airflow_template
 RUN mkdir -p /var/log/supervisor  && chown -R airflow /var/log/supervisor 
 
 COPY airflow.cfg.template /etc/airflow_template/airflow.cfg.template
-COPY setup_airflow_cfg.py /opt/conda/bin/setup_airflow_cfg.py
+COPY setup_cfg.py /opt/conda/bin/setup_cfg.py
 COPY entrypoint.sh /entrypoint.sh
 COPY kinit.sh /opt/conda/bin/kinit.sh
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN chown -R airflow /etc/supervisor/conf.d/
 RUN mkdir -p /home/airflow && chown -R airflow /home/airflow/
