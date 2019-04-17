@@ -6,7 +6,7 @@ RUN wget 'http://public-repo-1.hortonworks.com/HDP/debian7/2.x/updates/2.6.4.0/h
 # spark
 RUN conda install -y -c conda-forge -c cyclus python=3.6 java-jdk pyspark==2.3.1 bokeh matplotlib sympy seaborn pyhive sqlalchemy pyarrow flower psycopg2 tornado=5.0.2
 
-RUN conda install -y -c conda-forge psutil==5.6.1 setproctitle==1.1.10 && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install redis unicodecsv hmsclient fire apache-airflow[celery,ssh]
+RUN conda install -y -c conda-forge psutil==5.6.1 setproctitle==1.1.10 && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install redis unicodecsv hmsclient fire apache-airflow[celery,ssh]==1.10.3
 
 RUN conda install -y -c conda-forge -c cyclus fbprophet lightgbm xgboost statsmodels scikit-learn catboost bokeh matplotlib sympy seaborn pyhive sqlalchemy pyarrow && pip install h2o
 
