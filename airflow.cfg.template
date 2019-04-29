@@ -388,10 +388,12 @@ scheduler_heartbeat_sec = 5
 
 # after how much time should the scheduler terminate in seconds
 # -1 indicates to run continuously (see also num_runs)
-run_duration = -1
+run_duration = 300
+
+num_runs = 1
 
 # after how much time a new DAGs should be picked up from the filesystem
-min_file_process_interval = 0
+min_file_process_interval = 10
 
 # How often (in seconds) to scan the DAGs directory for new files. Default to 5 minutes.
 dag_dir_list_interval = 300

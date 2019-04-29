@@ -10,6 +10,8 @@ RUN conda install -y -c conda-forge psutil==5.6.1 setproctitle==1.1.10 && SLUGIF
 
 RUN conda install -y -c conda-forge -c cyclus fbprophet lightgbm xgboost statsmodels scikit-learn catboost bokeh matplotlib sympy seaborn pyhive sqlalchemy pyarrow && pip install h2o
 
+RUN pip install bs4
+
 RUN useradd airflow
 
 RUN mkdir -p /etc/airflow && chown -R airflow /etc/airflow
