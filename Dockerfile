@@ -18,6 +18,8 @@ RUN mkdir -p /etc/airflow && chown -R airflow /etc/airflow
 RUN mkdir -p /etc/airflow_template  && chown -R airflow /etc/airflow_template
 RUN mkdir -p /var/log/supervisor  && chown -R airflow /var/log/supervisor 
 
+RUN cd / && wget https://archive.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz && tar -xzvf spark-2.3.1-bin-hadoop2.7.tgz
+
 COPY airflow.cfg.template /etc/airflow_template/airflow.cfg.template
 COPY setup_cfg.py /opt/conda/bin/setup_cfg.py
 COPY entrypoint.sh /entrypoint.sh
@@ -32,5 +34,6 @@ EXPOSE 8080 5555
 USER airflow
 ENV AIRFLOW_HOME /etc/airflow/ 
 ENV JAVA_HOME=/opt/conda/
+ENV SPARK_HOME /spark-2.3.1-bin-hadoop2.7/
 
 ENTRYPOINT ["bash", "/entrypoint.sh"]
